@@ -337,7 +337,7 @@ Backup-BitLockerKeyProtector -MountPoint "C:" -KeyProtectorId $ADBegup.KeyProtec
   write-host "1. configuration réseau de l'interface active" -ForegroundColor Cyan
   write-host “2. ipconfig /all” -ForegroundColor DarkCyan
   write-host "3. Tracert" -ForegroundColor Cyan
-  write-host "4. Ping -t" -ForegroundColor DarkCyan
+  write-host "4. Ping sur 1h - résultat dans un fichier .txt sur le bureau" -ForegroundColor DarkCyan
   write-host "5. Nslookup" -ForegroundColor Cyan
   write-Host "6. NetStat" -ForegroundColor DarkCyan
   write-host "x. exit" -ForegroundColor Red
@@ -561,7 +561,7 @@ Backup-BitLockerKeyProtector -MountPoint "C:" -KeyProtectorId $ADBegup.KeyProtec
     elseif ($choix -eq 2)
     {
     #ipconfig \all
-    powershell ipconfig /all
+    ipconfig /all
 
     pause
 
@@ -572,7 +572,7 @@ Backup-BitLockerKeyProtector -MountPoint "C:" -KeyProtectorId $ADBegup.KeyProtec
     {
     #tracert
     $IP = read-host "adresse IP ou nom d'hôte cible"
-    powershell tracert $IP
+    tracert $IP
 
     pause
 
@@ -599,7 +599,7 @@ Backup-BitLockerKeyProtector -MountPoint "C:" -KeyProtectorId $ADBegup.KeyProtec
     {
     #Ping
     $IP = read-host "adresse IP ou nom d'hôte cible"
-    powershell nslookup $IP
+    nslookup $IP
 
     pause
 

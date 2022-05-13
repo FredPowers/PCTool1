@@ -1,4 +1,4 @@
-﻿  <#  
+  <#  
 
 .NOTES
 	NAME:	PCTool1.ps1
@@ -19,17 +19,15 @@ Sur les PC de mon organisation, il n' y a aucune fenêtre visible et cela désin
 
 
 
-
 # Décommenter les 6 lignes ci-dessous pour forcer le lancement du script en administrateur, sinon ouvrir powershell en administrateur et y lancer le script PCTool1.ps1
 
-<#
+
     If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
 {   
 $arguments = "& '" + $myinvocation.mycommand.definition + "'"
 Start-Process powershell -Verb runAs -ArgumentList $arguments
 Break
 }
-#>
 
   
   
@@ -49,6 +47,7 @@ Break
   write-host "8.  Resynchroniser l'heure" -ForegroundColor DarkCyan
   Write-Host "9.  Désinstaller un logiciel" -ForegroundColor Cyan
   Write-Host "10. Journal d'évenement (erreur et critique)" -ForegroundColor DarkCyan
+  Write-Host "11. Intégrer/Sortir un PC du domaine" -ForegroundColor Cyan
   write-host "x.  Exit" -ForegroundColor Red
   Write-Host ""
   write-host "###########################################" -ForegroundColor Blue
@@ -597,7 +596,7 @@ Backup-BitLockerKeyProtector -MountPoint "C:" -KeyProtectorId $ADBegup.KeyProtec
 
     elseif ($choix -eq 5)
     {
-    #Ping
+    #NSlookup
     $IP = read-host "adresse IP ou nom d'hôte cible"
     nslookup $IP
 
@@ -943,6 +942,55 @@ powershell $PSCommandPath
 }
 
 }
+
+###########################################################################################################
+# 11. Intégrer/Sortir un PC du Domaine
+
+
+    11{
+
+  write-host “1. Intégrer le PC au Domaine” -ForegroundColor Cyan
+  write-host "2. Sortir le PC du domaine (en admin local)" -ForegroundColor DarkCyan
+  Write-Host "x. exit" -ForegroundColor Red
+
+  $choix = read-host “faire un choix”
+
+  if ($choix -eq 1)
+  {
+  $Domaine = Read-host "entrer le nom du domaine à intégrer"
+
+
+  Add-Computer -DomainName $Domaine
+
+  
+  pause
+
+Clear-Host
+  }
+
+  elseif ($choix -eq 2)
+  {
+
+  $NomPC = hostname
+
+  Remove-Computer -UnjoinDomainCredential $NomPC\Administrateur -Workgroup "workgroup" -Force
+
+  
+  pause
+
+Clear-Host
+  }
+
+    elseif ($choix -eq "x")
+  {
+
+  Clear-Host
+powershell $PSCommandPath
+  }
+
+
+  }
+
 
 ###########################################################################################################
 

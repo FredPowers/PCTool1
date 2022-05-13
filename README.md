@@ -43,3 +43,9 @@ DNSServer            : "IP du ou des DNS"
 Masque sous-réseaux  : 255.255.255.128 / CIDR: 25
 Adresse MAC          : "Adresse MAC"
 DHCP                 : Enabled
+
+
+Screenshot :
+
+![2022-05-13 11_33_24-Window](https://user-images.githubusercontent.com/105367565/168256206-3748bd9c-44b9-436b-89c0-96e2787d6458.png)
+

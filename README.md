@@ -47,5 +47,7 @@ DHCP                 : Enabled
 
 Screenshot :
 
-![2022-05-13 11_33_24-Window](https://user-images.githubusercontent.com/105367565/168256206-3748bd9c-44b9-436b-89c0-96e2787d6458.png)
+![Capture1](https://user-images.githubusercontent.com/105367565/168375240-95613e70-06e3-4958-8fe8-073b3d9e991a.PNG)
+
+
 
